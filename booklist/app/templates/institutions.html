@@ -1,18 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css"/>
 </head>
 
 <body>
-    {% comment %} <ELEMENT onclick='UpdatePKFunction({{ item.pk }})'> {% endcomment %}
-    
-    {% for row in rows%}
-        <form action="{{url}}" method="post">
-            {% csrf_token %}
-            <button type="submit" name="button" value="{{row.direction_id}}">{{row.dir}}</button>
-        </form>
-    {% endfor %}
+    <h1>Институты:</h1>
+    <ul>
+        {% for row in rows%}
+        <li>
+            <form action="{{url}}" method="post">
+                {% csrf_token %}
+                <button type="submit" name="button" value="{{row.direction_id}}">{{row.dir}}</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 
 </html>

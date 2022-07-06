@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css"/>
 </head>
 
 <body>
@@ -14,13 +16,17 @@
         <h1>Материалы не загружены</h1>
     {% endif %}
 
-    {% for book in list %}
-        <div>
-            <p style='display: inline;'>{{book.book_name}}</p>
-            <a style='display: inline;' href='{{book.book_link}}' target='_blank'>Ссылка</a>
-        </div>
-    {% endfor %}
+    <h1>Записи:</h1>
+    <ul>
+        {% for book in list %}
+        <li>
+            <div>
+                <p style='display: inline;'>{{book.book_name}}</p>
+                <a style='display: inline;' href='{{book.book_link}}' target='_blank'>Ссылка</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 
-    
 </body>
 </html>

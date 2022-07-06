@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css"/>
 </head>
 
 <body>
@@ -11,16 +13,20 @@
     </form>
 
     {% if isempty %}
-        <h1>Направления не загружены</h1>
+        <h1>Направления не загружены</h1>   
+    {% else %}
+        <h1>Направления:</h1>
+        <ul>
+            {% for row in rows%}
+            <li>
+                <form action="{{url}}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" name='button' value="{{row.list_id}} {{direction_id}}">{{row.dir}}</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>      
     {% endif %}
 
-    {% for row in rows%}
-        <form action="{{url}}" method="post">
-            {% csrf_token %}
-            <button type="submit" name='button' value="{{row.list_id}} {{direction_id}}">{{row.dir}}</button>
-        </form>
-    {% endfor %}
-
-    
 </body>
 </html>
