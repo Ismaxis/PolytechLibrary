@@ -9,14 +9,17 @@
         {% csrf_token %}
         <button type="submit">Back</button>
     </form>
-    {% block content %}
-        {% for dir in dir_list%}
-            <form action="" method="post">
-                {% csrf_token %}
-                <button type="submit" name='button'>{{dir}}</button>
-            </form>
-        {% endfor %}
-    {% endblock %} 
+
+    {% if isempty %}
+    <h1>No directions loaded</h1>
+    {% endif %}
+
+    {% for dir in dir_list%}
+        <form action="" method="post">
+            {% csrf_token %}
+            <button type="submit" name='button'>{{dir}}</button>
+        </form>
+    {% endfor %}
 
     
 </body>

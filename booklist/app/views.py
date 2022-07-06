@@ -9,7 +9,7 @@ def index(request):
     dict = {'rows': [],
     'url': 'direction'}
 
-    for i in range(2):
+    for i in range(len(q)):
         row = {'dir': q[i], 'num': i + 2}
         dict['rows'].append(row)
 
@@ -19,16 +19,10 @@ def direction(request):
 
     # if request.method == 'POST':
     id = int(request.POST['button'])
-    print(id)
+    rows = Direction.objects.filter(institution_id=id)
 
-    q = Direction.objects.filter(institution_id=id)
     dict = {
-        'dir_list': q,
+        'dir_list': rows,
+        'isempty': rows.count() == 0
         }
     return render(request, 'inst.html', dict)
-
-
-# def index(request):
-#     q = Institution.objects.all()
-#     dict = {'dir_list': q}
-#     return render(request, 'app.html', dict)
