@@ -10,19 +10,38 @@ def index(request):
     'url': 'direction'}
 
     for i in range(len(q)):
-        row = {'dir': q[i], 'num': i + 2}
+        row = {'dir': q[i], 'direction_id': q.values()[i]['id']}
         dict['rows'].append(row)
 
-    return render(request, 'app.html', dict)
+    return render(request, 'institutions.html', dict)
 
 def direction(request):
-
     # if request.method == 'POST':
     id = int(request.POST['button'])
     rows = Direction.objects.filter(institution_id=id)
 
     dict = {
-        'dir_list': rows,
-        'isempty': rows.count() == 0
+        'rows': [],
+        'url': 'direction/list',
+        'isempty': rows.count() == 0,
+        'direction_id': id
         }
-    return render(request, 'inst.html', dict)
+
+    for i in range(len(rows)):
+        row = {'dir': rows[i], 'list_id': rows.values()[0]['id']}
+        dict['rows'].append(row)
+
+    return render(request, 'direction.html', dict)
+
+def list(request):
+    # if request.method == 'POST':
+    id, dir_id = request.POST['button'].split()
+    rows = List.objects.filter(direction_id=id)
+
+    dict = {
+        'lists': rows,
+        'url': 'list',
+        'isempty': rows.count() == 0,
+        'caller': dir_id
+        }
+    return render(request, 'list.html', dict)

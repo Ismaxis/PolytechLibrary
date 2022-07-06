@@ -11,17 +11,16 @@
     </form>
 
     {% if isempty %}
-    <h1>No directions loaded</h1>
+        <h1>No directions loaded</h1>
     {% endif %}
 
-    {% for dir in dir_list%}
-        <form action="" method="post">
+    {% for row in rows%}
+        <form action="{{url}}" method="post">
             {% csrf_token %}
-            <button type="submit" name='button'>{{dir}}</button>
+            <button type="submit" name='button' value="{{row.list_id}} {{direction_id}}">{{row.dir}}</button>
         </form>
     {% endfor %}
 
     
 </body>
-
 </html>

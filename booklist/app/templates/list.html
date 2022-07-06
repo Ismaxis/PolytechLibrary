@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <form action="/app/direction" method="post">
+        {% csrf_token %}
+        <button type="submit" name='button' value='{{caller}}'>Back</button>
+    </form>
+
+    {% if isempty %}
+        <h1>No lists loaded</h1>
+    {% endif %}
+
+    {% for dir in dir_list%}
+        {% csrf_token %}
+        <button type="submit" name='button'>{{dir}}</button>
+    {% endfor %}
+
+    
+</body>
+</html>

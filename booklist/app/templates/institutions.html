@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    {% comment %} <ELEMENT onclick='UpdatePKFunction({{ item.pk }})'> {% endcomment %}
+    
+    {% for row in rows%}
+        <form action="{{url}}" method="post">
+            {% csrf_token %}
+            <button type="submit" name='button' value="{{row.direction_id}}"">{{row.dir}}</button>
+        </form>
+    {% endfor %}
+</body>
+
+</html>
