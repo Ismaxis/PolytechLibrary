@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Institution, Direction, List
@@ -7,25 +6,22 @@ from .models import Institution, Direction, List
 
 def index(request):
     q = Institution.objects.all()
-    print(q)
-    urls = ['hum', 'build'];
-    dict = {'rows': []}
+    dict = {'rows': [],
+    'url': 'direction'}
 
-    for i in range(len(urls)):
-        row = {'url': urls[i], 'dir': q[i]}
+    for i in range(2):
+        row = {'dir': q[i], 'num': i + 2}
         dict['rows'].append(row)
 
     return render(request, 'app.html', dict)
 
-def hum(request):
-    q = Direction.objects.filter(institution_id=2)
-    dict = {
-        'dir_list': q,
-        }
-    return render(request, 'inst.html', dict)
+def direction(request):
 
-def build(request):
-    q = Direction.objects.filter(institution_id=3)
+    # if request.method == 'POST':
+    id = int(request.POST['button'])
+    print(id)
+
+    q = Direction.objects.filter(institution_id=id)
     dict = {
         'dir_list': q,
         }

@@ -9,9 +9,9 @@
     
     {% block content %}
         {% for i in rows%}
-            <form action="{{i.url}}" method="post">
+            <form action="{{url}}" method="post">
                 {% csrf_token %}
-                <button type="submit" name='mybtn2'>{{i.dir}}</button>
+                <button type="submit" name='button' value="{{i.num}}"">{{i.dir}}</button>
             </form>
         {% endfor %}
     {% endblock %}  
