@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    {% comment %} <ELEMENT onclick='UpdatePKFunction({{ item.pk }})'> {% endcomment %}
+    
+    {% comment %} {% block content %}
+        {% for dir in dir_list %}
+            <p>{{dir}}</p>
+        {% endfor %}
+    {% endblock %}  {% endcomment %}
+
+    <form action="{{urls}}" method="post">
+        {% csrf_token %}
+        <button type="submit" name='mybtn2'>Hum</button>
+    </form>
+</body>
+
+</html>
