@@ -28,7 +28,7 @@ def direction(request):
         }
 
     for i in range(len(rows)):
-        row = {'dir': rows[i], 'list_id': rows.values()[0]['id']}
+        row = {'dir': rows[i], 'list_id': rows.values()[i]['id']}
         dict['rows'].append(row)
 
     return render(request, 'direction.html', dict)
@@ -39,7 +39,7 @@ def list(request):
     rows = List.objects.filter(direction_id=id)
 
     dict = {
-        'lists': rows,
+        'list': rows,
         'url': 'list',
         'isempty': rows.count() == 0,
         'caller': dir_id

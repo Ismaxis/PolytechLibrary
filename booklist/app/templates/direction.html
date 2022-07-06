@@ -7,11 +7,11 @@
 <body>
     <form action="/app/" method="post">
         {% csrf_token %}
-        <button type="submit">Back</button>
+        <button type="submit">Назад</button>
     </form>
 
     {% if isempty %}
-        <h1>No directions loaded</h1>
+        <h1>Направления не загружены</h1>
     {% endif %}
 
     {% for row in rows%}
