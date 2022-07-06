@@ -7,16 +7,14 @@
 <body>
     {% comment %} <ELEMENT onclick='UpdatePKFunction({{ item.pk }})'> {% endcomment %}
     
-    {% comment %} {% block content %}
-        {% for dir in dir_list %}
-            <p>{{dir}}</p>
+    {% block content %}
+        {% for i in rows%}
+            <form action="{{i.url}}" method="post">
+                {% csrf_token %}
+                <button type="submit" name='mybtn2'>{{i.dir}}</button>
+            </form>
         {% endfor %}
-    {% endblock %}  {% endcomment %}
-
-    <form action="{{urls}}" method="post">
-        {% csrf_token %}
-        <button type="submit" name='mybtn2'>Hum</button>
-    </form>
+    {% endblock %}  
 </body>
 
 </html>

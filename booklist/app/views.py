@@ -6,13 +6,26 @@ from .models import Institution, Direction, List
 # Create your views here.
 
 def index(request):
-    dict = {
-        "urls": 'hum'
-    }
+    q = Institution.objects.all()
+    print(q)
+    urls = ['hum', 'build'];
+    dict = {'rows': []}
+
+    for i in range(len(urls)):
+        row = {'url': urls[i], 'dir': q[i]}
+        dict['rows'].append(row)
+
     return render(request, 'app.html', dict)
 
 def hum(request):
-    q = Institution.objects.all()
+    q = Direction.objects.filter(institution_id=2)
+    dict = {
+        'dir_list': q,
+        }
+    return render(request, 'inst.html', dict)
+
+def build(request):
+    q = Direction.objects.filter(institution_id=3)
     dict = {
         'dir_list': q,
         }
